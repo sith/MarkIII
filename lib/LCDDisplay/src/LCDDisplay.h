@@ -1,7 +1,3 @@
-//
-// Created by Fedorov, Alex on 10/12/20.
-//
-
 #ifndef MARKIII_LCDDISPLAY_H
 #define MARKIII_LCDDISPLAY_H
 
@@ -19,6 +15,11 @@ class LCDDisplay {
 public:
 
     void init();
+
+    void showWelcomeMessage();
+
+    void clear();
+
 
 
 };
