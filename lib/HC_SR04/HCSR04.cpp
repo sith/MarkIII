@@ -19,7 +19,6 @@ void HCSR04::init() {
 
 void HCSR04::process() {
     readSensor();
-
 }
 
 void HCSR04::readSensor() {

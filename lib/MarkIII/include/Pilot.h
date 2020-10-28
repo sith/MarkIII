@@ -55,15 +55,16 @@ public:
         }
 
         if (delta > 0) {
-            motor.turnRight(speed);
+            motor.leftWheel(FORWARD, speed);
+            motor.rightWheel(BACKWARD, speed);
         } else if (delta < 0) {
-            motor.turnLeft(speed);
+            motor.leftWheel(BACKWARD, speed);
+            motor.rightWheel(FORWARD, speed);
         } else {
-            motor.forward(speed);
+            motor.leftWheel(FORWARD, speed);
+            motor.rightWheel(FORWARD, speed);
         }
     }
-
-
 };
 
 

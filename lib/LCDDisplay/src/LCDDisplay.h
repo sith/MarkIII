@@ -12,6 +12,7 @@ const int LCD_ROWS = 2;
 class LCDDisplay {
     hd44780_I2Cexp lcd;
 
+    void clearRow(int rowIndex);
 public:
 
     void init();
@@ -20,8 +21,7 @@ public:
 
     void clear();
 
-
-
+    void countDownToStart(int seconds);
 };
 
 
