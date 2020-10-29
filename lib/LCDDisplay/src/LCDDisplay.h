@@ -22,6 +22,8 @@ public:
     void clear();
 
     void countDownToStart(int seconds);
+
+    void showDistanceToObstacle(unsigned int distanceToObstacle);
 };
 
 

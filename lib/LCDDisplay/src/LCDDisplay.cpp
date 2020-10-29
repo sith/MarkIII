@@ -43,5 +43,14 @@ void LCDDisplay::clearRow(int rowIndex) {
     }
 }
 
+void LCDDisplay::showDistanceToObstacle(unsigned int distanceToObstacle) {
+    clearRow(0);
+    lcd.setCursor(0, 0);
+    lcd.write("D:");
+    lcd.print((int) distanceToObstacle);
+    lcd.write("in");
+
+}
+
 
 
