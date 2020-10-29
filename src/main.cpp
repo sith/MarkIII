@@ -42,8 +42,7 @@ void setup() {
 
 void loop() {
     distanceSensor.process();
+
     systemMonitor.process();
-
-
-    //    pilot.process();
+    pilot.process();
 }

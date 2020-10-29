@@ -8,11 +8,16 @@
 
 class InMemoryDisplay {
   unsigned  int printedDistance = 0;
+    bool printedMotorIsRunningState = false;
 public:
 
     unsigned int getPrintedDistance() const;
 
     void showDistanceToObstacle(unsigned int distance);
+
+    void showMotorState(bool motorIsMoving);
+
+    bool registeredMotorState() const;
 };
 
 

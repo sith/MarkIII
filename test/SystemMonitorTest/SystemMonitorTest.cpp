@@ -43,11 +43,34 @@ void printsDistanceAfterTimerIsTriggered() {
     TEST_ASSERT_EQUAL(newDistance, inMemoryDisplay.getPrintedDistance());
 };
 
+void printMotorIsRunning() {
+    fixedTimer.setReady(true);
+    inMemoryMotor.leftWheel(BACKWARD, 128);
+    inMemoryMotor.rightWheel(FORWARD, 0);
+
+    systemMonitor.process();
+
+    TEST_ASSERT(inMemoryDisplay.registeredMotorState());
+}
+
+void printMotorIsStopped() {
+    fixedTimer.setReady(true);
+    inMemoryMotor.leftWheel(FORWARD, 0);
+    inMemoryMotor.rightWheel(FORWARD, 0);
+
+    systemMonitor.process();
+
+    TEST_ASSERT_FALSE(inMemoryDisplay.registeredMotorState());
+}
 
 int main(int argc, char **argv) {
     UNITY_BEGIN();
     setup();
     RUN_TEST(printsDistanceAfterTimerIsTriggered);
+    setup();
+    RUN_TEST(printMotorIsRunning);
+    setup();
+    RUN_TEST(printMotorIsStopped);
     UNITY_END();
 }
 

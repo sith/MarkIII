@@ -12,7 +12,8 @@ class InMemoryMotor {
 public:
     Movement leftWheelMovement = FORWARD;
     Movement rightWheelMovement = FORWARD;
-    char speed = 0;
+    unsigned char leftWheelSpeed = 0;
+    unsigned char rightWheelSpeed = 0;
 
     bool doesTurnRight() const;
 
@@ -22,11 +23,19 @@ public:
 
     bool goesForward() const;
 
-    void leftWheel(Movement movement, char speed);
+    void leftWheel(Movement movement, unsigned char speed);
 
-    void rightWheel(Movement movement, char speed);
+    void rightWheel(Movement movement, unsigned char speed);
 
     void stop();
+
+    bool isRunning();
+
+    unsigned char getLeftWheelSpeed() const;
+
+    unsigned char getRightWheelSpeed() const;
+
+
 };
 
 

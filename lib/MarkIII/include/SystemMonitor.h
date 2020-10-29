@@ -20,8 +20,8 @@ public:
 
     void process() {
         if (timer.isReady()) {
-            int distance = distanceSensor.getDistance();
-            display.showDistanceToObstacle(distance);
+            display.showDistanceToObstacle(distanceSensor.getDistance());
+            display.showMotorState(motor.isRunning());
         }
     };
 };

@@ -52,5 +52,17 @@ void LCDDisplay::showDistanceToObstacle(unsigned int distanceToObstacle) {
 
 }
 
+void LCDDisplay::showMotorState(bool running) {
+    clearRow(1);
+    lcd.setCursor(0, 1);
+    lcd.write("M:");
+    if (running) {
+        lcd.write("running");
+    } else {
+        lcd.write("stopped");
+    }
+
+}
+
 
 

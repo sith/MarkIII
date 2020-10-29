@@ -8,23 +8,28 @@
 #include <Movement.h>
 
 class L293DDualMotorDriver {
-    int leftEn = 9;
-    int leftIn1 = 8;
-    int leftIn2 = 7;
+    unsigned char leftEn = 9;
+    unsigned char leftIn1 = 8;
+    unsigned char leftIn2 = 7;
+    unsigned char rightEn = 3;
+    unsigned char rightIn1 = 5;
+    unsigned char rightIn2 = 4;
 
-    int rightEn = 3;
-    int rightIn1 = 5;
-    int rightIn2 = 4;
+    unsigned char leftWheelSpeed = 0;
+    unsigned char rightWheelSpeed = 0;
 
-    void stopMotor(int in1, int in2, int en);
+    void stopMotor(unsigned char in1, unsigned char in2, unsigned char en);
 
-    void controlMotor(const Movement &movement, char speed, int in1, int in2, int en);
+    void controlMotor(const Movement &movement, unsigned char speed, unsigned char in1, unsigned char in2, unsigned char en);
 
 public:
     void init();
 
-    void leftWheel(Movement movement, char speed);
-    void rightWheel(Movement movement, char speed);
+    void leftWheel(Movement movement, unsigned char speed);
+
+    void rightWheel(Movement movement, unsigned char speed);
+
+    bool isRunning() const;
 
     void stop();
 };

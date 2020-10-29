@@ -24,6 +24,8 @@ public:
     void countDownToStart(int seconds);
 
     void showDistanceToObstacle(unsigned int distanceToObstacle);
+
+    void showMotorState(bool running);
 };
 
 

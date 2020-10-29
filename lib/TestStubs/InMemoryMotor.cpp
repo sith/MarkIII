@@ -13,24 +13,36 @@ bool InMemoryMotor::doesTurnLeft() const {
 }
 
 bool InMemoryMotor::doesNotMove() const {
-    return speed == 0;
+    return leftWheelSpeed == 0 && rightWheelSpeed == 0;
 }
 
 bool InMemoryMotor::goesForward() const {
     return leftWheelMovement == FORWARD && rightWheelMovement == FORWARD;
 }
 
-void InMemoryMotor::leftWheel(Movement movement, char speed) {
+void InMemoryMotor::leftWheel(Movement movement, unsigned char speed) {
     leftWheelMovement = movement;
-    InMemoryMotor::speed = speed;
+    InMemoryMotor::leftWheelSpeed = speed;
 }
 
-void InMemoryMotor::rightWheel(Movement movement, char speed) {
+void InMemoryMotor::rightWheel(Movement movement, unsigned char speed) {
     rightWheelMovement = movement;
-    InMemoryMotor::speed = speed;
+    InMemoryMotor::rightWheelSpeed = speed;
 }
 
 void InMemoryMotor::stop() {
-    speed = 0;
+    leftWheelSpeed = 0;
+    rightWheelSpeed = 0;
 }
 
+unsigned char InMemoryMotor::getLeftWheelSpeed() const {
+    return leftWheelSpeed;
+}
+
+unsigned char InMemoryMotor::getRightWheelSpeed() const {
+    return rightWheelSpeed;
+}
+
+bool InMemoryMotor::isRunning() {
+    return leftWheelSpeed > 0 || rightWheelSpeed > 0;
+}

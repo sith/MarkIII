@@ -5,15 +5,19 @@
 #include "L293DDualMotorDriver.h"
 #include <Arduino.h>
 
-void L293DDualMotorDriver::leftWheel(Movement movement, char speed) {
+void L293DDualMotorDriver::leftWheel(Movement movement, unsigned char speed) {
+    leftWheelSpeed = speed;
     controlMotor(movement, speed, leftIn1, leftIn2, leftEn);
 }
 
-void L293DDualMotorDriver::rightWheel(Movement movement, char speed) {
+void L293DDualMotorDriver::rightWheel(Movement movement, unsigned char speed) {
+    rightWheelSpeed = speed;
     controlMotor(movement, speed, rightIn1, rightIn2, rightEn);
 }
 
-void L293DDualMotorDriver::controlMotor(const Movement &movement, char speed, int in1, int in2, int en) {
+void
+L293DDualMotorDriver::controlMotor(const Movement &movement, unsigned char speed, unsigned char in1, unsigned char in2,
+                                   unsigned char en) {
     if (speed == 0) {
         stopMotor(in1, in2, en);
     }
@@ -30,7 +34,8 @@ void L293DDualMotorDriver::controlMotor(const Movement &movement, char speed, in
     analogWrite(en, speed);
 }
 
-void L293DDualMotorDriver::stopMotor(int in1, int in2, int en) {
+void
+L293DDualMotorDriver::stopMotor(unsigned char in1, unsigned char in2, unsigned char en) {
     digitalWrite(in1, LOW);
     digitalWrite(in2, LOW);
     analogWrite(en, 0);
@@ -51,11 +56,16 @@ void L293DDualMotorDriver::init() {
     digitalWrite(leftIn2, LOW);
     digitalWrite(rightIn1, LOW);
     digitalWrite(rightIn2, LOW);
-
-
 }
 
 void L293DDualMotorDriver::stop() {
     stopMotor(leftIn1, leftIn2, leftEn);
     stopMotor(rightIn1, rightIn2, rightEn);
+
+    leftWheelSpeed = 0;
+    rightWheelSpeed = 0;
+}
+
+bool L293DDualMotorDriver::isRunning() const {
+    return leftWheelSpeed > 0 || rightWheelSpeed > 0;
 }
