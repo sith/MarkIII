@@ -4,22 +4,32 @@
 
 #include "Compass.h"
 
-void Compass::init() {
-    compass.init();
-    compass.setCalibration(-1923, 0, -9281, 0, -6983, 0);
+bool Compass::init() {
+    if (!compass.begin()) {
+        return false;
+    }
 
-    readSensor();
-}
-
-void Compass::readSensor() {
-    compass.read();
-    currentDirection = compass.getAzimuth();
+    process();
+    return true;
 }
 
 void Compass::process() {
-    readSensor();
+    sensors_event_t event;
+    compass.getEvent(&event);
+
+    double heading = atan2((event.magnetic.y - ((yMax + yMin) / 2.0)), (event.magnetic.x - ((xMax + xMin) / 2.0)));
+
+    heading += declinationAngle;
+
+    if (heading < 0) {
+        heading += 2 * PI;
+    }
+    if (heading > 2 * PI) {
+        heading -= 2 * PI;
+    }
+    currentDirection = heading * 180 / M_PI; // Convert radians to degrees.
 }
 
-int Compass::direction() {
+double Compass::direction() {
     return currentDirection;
 }

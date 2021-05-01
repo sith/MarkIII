@@ -15,7 +15,7 @@ class LCDDisplay {
     void clearRow(int rowIndex);
 public:
 
-    void init();
+    int init();
 
     void showWelcomeMessage();
 

@@ -1,3 +1,7 @@
+
+#ifndef MARKIII_PILOTTEST_H
+#define MARKIII_PILOTTEST_H
+
 #include <unity.h>
 #include <Pilot.h>
 #include <InMemoryCompass.h>
@@ -103,8 +107,7 @@ void resetMocks() {
     distanceSensor.setDistance(1000);
 }
 
-int main(int argc, char **argv) {
-    UNITY_BEGIN();
+void pilotTests() {
     resetMocks();
     RUN_TEST(turnRightToGetBackOnCourse);
     resetMocks();
@@ -119,5 +122,8 @@ int main(int argc, char **argv) {
     RUN_TEST(noMovementIfSpeedIsZero);
     resetMocks();
     RUN_TEST(stopsIfObstacle);
-    UNITY_END();
+    resetMocks();
 }
+
+
+#endif //MARKIII_PILOTTEST_H

@@ -5,11 +5,8 @@
 #include <BlinkMessenger.h>
 #include "LCDDisplay.h"
 
-void LCDDisplay::init() {
-    int status = lcd.begin(LCD_COLS, LCD_ROWS);
-    if (status) {
-        blockWithMessage("..-");
-    }
+int LCDDisplay::init() {
+    return lcd.begin(LCD_COLS, LCD_ROWS);
 }
 
 void LCDDisplay::showWelcomeMessage() {

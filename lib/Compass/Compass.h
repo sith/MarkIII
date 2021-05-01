@@ -1,25 +1,24 @@
 #ifndef MARKIII_COMPASS_H
 #define MARKIII_COMPASS_H
 
-#include <Wire.h>
-#include <Adafruit_Sensor.h>
-#include <Adafruit_HMC5883_U.h>
-#include <BlinkMessenger.h>
-#include <QMC5883LCompass.h>
+#include <Adafruit_LIS2MDL.h>
 
 class Compass {
-    QMC5883LCompass compass;
-    int currentDirection;
+    Adafruit_LIS2MDL compass{12345};
+    double currentDirection = -1.0;
 
-    void readSensor();
-
+    const float xMin = -88.35;
+    const float xMax = 29.55;
+    const float yMin = -75.00;
+    const float yMax = 35.55;
+    const float declinationAngle = -0.2714;
 public:
 
-    void init();
+    bool init();
 
     void process();
 
-    int direction();
+    double direction();
 };
 
 #endif //MARKIII_COMPASS_H

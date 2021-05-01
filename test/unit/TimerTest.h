@@ -1,6 +1,10 @@
-#include <unity.h>
-#include <Timer.h>
-#include <Arduino.h>
+
+#ifndef MARKIII_TIMERTEST1_H
+#define MARKIII_TIMERTEST1_H
+
+#include "unity.h"
+#include "Timer.h"
+#include "Arduino.h"
 
 void testTimer() {
     Timer timer{250};
@@ -11,11 +15,8 @@ void testTimer() {
     TEST_ASSERT(timer.isReady())
 }
 
-void setup(){}
-
-void loop(){
-    UNITY_BEGIN();
+void timerTests() {
     RUN_TEST(testTimer);
-    UNITY_END();
 }
 
+#endif //MARKIII_TIMERTEST1_H
