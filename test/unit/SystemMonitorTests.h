@@ -10,7 +10,6 @@
 #include <InMemoryCompass.h>
 #include <InMemoryMotor.h>
 #include <InMemoryDistanceSensor.h>
-#include <HardwareSerial.h>
 #include <SystemMonitor.h>
 #include <InMemoryDisplay.h>
 #include <FixedTimer.h>
@@ -39,7 +38,6 @@ namespace {
 
         fixedTimer.setReady(true);
 
-        Serial.println(fixedTimer.isReady());
         systemMonitor.process();
 
         TEST_ASSERT_EQUAL(newDistance, inMemoryDisplay.getPrintedDistance());

@@ -61,5 +61,13 @@ void LCDDisplay::showMotorState(bool running) {
 
 }
 
+void LCDDisplay::showErrorAndBlock(char errorCode) {
+    clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Error: ");
+    lcd.print((int) errorCode);
+    while (1);
+}
+
 
 

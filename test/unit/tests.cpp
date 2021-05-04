@@ -5,6 +5,7 @@
 #include "TimerTest.h"
 #include "PilotTest.h"
 #include "SystemMonitorTests.h"
+#include "StateMachineTests.h"
 
 void setup() {}
 
@@ -13,5 +14,6 @@ void loop() {
     timerTests();
     pilotTests();
     systemMonitorTests();
+    stateMachineTests();
     UNITY_END();
 }

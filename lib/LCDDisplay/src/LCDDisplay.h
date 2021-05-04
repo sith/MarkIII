@@ -26,6 +26,8 @@ public:
     void showDistanceToObstacle(unsigned int distanceToObstacle);
 
     void showMotorState(bool running);
+
+    void showErrorAndBlock(char errorCode);
 };
 
 

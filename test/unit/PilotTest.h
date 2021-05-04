@@ -7,8 +7,6 @@
 #include <InMemoryCompass.h>
 #include <InMemoryMotor.h>
 #include <InMemoryDistanceSensor.h>
-#include <HardwareSerial.h>
-
 
 InMemoryCompass compass{0};
 InMemoryMotor motor{};
