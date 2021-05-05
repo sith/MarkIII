@@ -37,6 +37,7 @@ public:
         started = true;
     }
 
+//TODO do i need it
     void process() {
         if (!started) {
             return;
@@ -55,15 +56,32 @@ public:
         }
 
         if (delta > 0) {
-            motor.leftWheel(FORWARD, speed);
-            motor.rightWheel(BACKWARD, speed);
+            rotateRight();
         } else if (delta < 0) {
-            motor.leftWheel(BACKWARD, speed);
-            motor.rightWheel(FORWARD, speed);
+            rotateLeft();
         } else {
-            motor.leftWheel(FORWARD, speed);
-            motor.rightWheel(FORWARD, speed);
+            forward();
         }
+    }
+
+    void forward() const {
+        motor.leftWheel(FORWARD, speed);
+        motor.rightWheel(FORWARD, speed);
+    }
+
+    void rotateLeft() const {
+        motor.leftWheel(BACKWARD, speed);
+        motor.rightWheel(FORWARD, speed);
+    }
+
+    void rotateRight() const {
+        motor.leftWheel(FORWARD, speed);
+        motor.rightWheel(BACKWARD, speed);
+    }
+
+    void stop() {
+        motor.leftWheel(FORWARD, 0);
+        motor.rightWheel(FORWARD, 0);
     }
 };
 

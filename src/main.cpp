@@ -3,7 +3,6 @@
 #include <HCSR04.h>
 #include <LCDDisplay.h>
 #include <L293DDualMotorDriver.h>
-#include <SquareRunnerMode.h>
 #include <StateMachine.h>
 #include "ErrorCodes.h"
 

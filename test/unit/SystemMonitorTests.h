@@ -14,7 +14,7 @@
 #include <InMemoryDisplay.h>
 #include <FixedTimer.h>
 
-namespace {
+namespace systemMonitor {
     InMemoryDisplay inMemoryDisplay;
     InMemoryCompass inMemoryCompass{0};
     FixedTimer fixedTimer;
@@ -69,7 +69,7 @@ namespace {
         fixedTimer.setReady(false);
     }
 
-    void systemMonitorTests() {
+    void tests() {
         before();
         RUN_TEST(printsDistanceAfterTimerIsTriggered);
         before();
