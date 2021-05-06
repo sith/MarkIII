@@ -4,12 +4,12 @@
 
 #include "InMemoryMotor.h"
 
-bool InMemoryMotor::doesTurnRight() const {
-    return leftWheelMovement == FORWARD && rightWheelMovement == BACKWARD;
+bool InMemoryMotor::doesRotateRight() const {
+    return leftWheelMovement == FORWARD && rightWheelMovement == BACKWARD && leftWheelSpeed > 0 && rightWheelSpeed > 0;
 }
 
-bool InMemoryMotor::doesTurnLeft() const {
-    return leftWheelMovement == BACKWARD && rightWheelMovement == FORWARD;
+bool InMemoryMotor::doesRotateLeft() const {
+    return leftWheelMovement == BACKWARD && rightWheelMovement == FORWARD && leftWheelSpeed > 0 && rightWheelSpeed > 0;
 }
 
 bool InMemoryMotor::doesNotMove() const {
@@ -17,7 +17,8 @@ bool InMemoryMotor::doesNotMove() const {
 }
 
 bool InMemoryMotor::goesForward() const {
-    return leftWheelMovement == FORWARD && rightWheelMovement == FORWARD;
+    return leftWheelMovement == FORWARD && rightWheelMovement == FORWARD && leftWheelSpeed > 0 &&
+           rightWheelSpeed > 0 and leftWheelSpeed == rightWheelSpeed;
 }
 
 void InMemoryMotor::leftWheel(Movement movement, unsigned char speed) {

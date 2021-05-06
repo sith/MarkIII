@@ -40,7 +40,7 @@ namespace pilotTests{
 
         pilot.process();
 
-        TEST_ASSERT(motor.doesTurnLeft());
+        TEST_ASSERT(motor.doesRotateLeft());
     }
 
     void turnLeftToGetBackOnCourse() {
@@ -52,7 +52,7 @@ namespace pilotTests{
 
         pilot.process();
 
-        TEST_ASSERT(motor.doesTurnLeft());
+        TEST_ASSERT(motor.doesRotateLeft());
     }
 
     void turnRightToGetBackOnCourse() {
@@ -64,7 +64,7 @@ namespace pilotTests{
 
         pilot.process();
 
-        TEST_ASSERT(motor.doesTurnRight());
+        TEST_ASSERT(motor.doesRotateRight());
     }
 
     void noMovementIfNotStarted() {

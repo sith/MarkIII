@@ -15,9 +15,9 @@ public:
     unsigned char leftWheelSpeed = 0;
     unsigned char rightWheelSpeed = 0;
 
-    bool doesTurnRight() const;
+    bool doesRotateRight() const;
 
-    bool doesTurnLeft() const;
+    bool doesRotateLeft() const;
 
     bool doesNotMove() const;
 

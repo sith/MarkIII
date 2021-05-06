@@ -18,13 +18,33 @@ namespace rotateState {
                                                                             inMemoryDistanceSensor};
         RotateState<InMemoryMotor, InMemoryCompass, InMemoryDistanceSensor> rotateState{pilot, inMemoryCompass, 90};
         TEST_ASSERT(!rotateState.isDone());
-        TEST_ASSERT(inMemoryMotor.doesTurnRight());
+        TEST_ASSERT(inMemoryMotor.doesRotateRight());
 
         inMemoryCompass.setDirection(45);
         TEST_ASSERT(!rotateState.isDone());
-        TEST_ASSERT(inMemoryMotor.doesTurnRight());
+        TEST_ASSERT(inMemoryMotor.doesRotateRight());
 
         inMemoryCompass.setDirection(90);
+        TEST_ASSERT(rotateState.isDone());
+        TEST_ASSERT(inMemoryMotor.doesNotMove());
+    }
+
+    void rotatesLeft() {
+        InMemoryMotor inMemoryMotor;
+        InMemoryCompass inMemoryCompass{0};
+        InMemoryDistanceSensor inMemoryDistanceSensor;
+        Pilot<InMemoryMotor, InMemoryCompass, InMemoryDistanceSensor> pilot{inMemoryMotor,
+                                                                            inMemoryCompass,
+                                                                            inMemoryDistanceSensor};
+        RotateState<InMemoryMotor, InMemoryCompass, InMemoryDistanceSensor> rotateState{pilot, inMemoryCompass, -90};
+        TEST_ASSERT(!rotateState.isDone());
+        TEST_ASSERT(inMemoryMotor.doesRotateLeft());
+
+        inMemoryCompass.setDirection(315);
+        TEST_ASSERT(!rotateState.isDone());
+        TEST_ASSERT(inMemoryMotor.doesRotateLeft());
+
+        inMemoryCompass.setDirection(270);
         TEST_ASSERT(rotateState.isDone());
         TEST_ASSERT(inMemoryMotor.doesNotMove());
     }
@@ -32,6 +52,7 @@ namespace rotateState {
 
 void rotateStateTests() {
     RUN_TEST(rotateState::rotatesRight);
+    RUN_TEST(rotateState::rotatesLeft);
 }
 
 #endif //MARKIII_ROTATESTATETESTS_H

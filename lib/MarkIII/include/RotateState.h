@@ -7,6 +7,7 @@
 
 #include <State.h>
 #include <Pilot.h>
+#include <Arduino.h>
 
 template<class Motor, class Compass, class DistanceSensor>
 class RotateState : public State {
@@ -16,7 +17,6 @@ class RotateState : public State {
     int targetDirection = -1;
 
 public:
-
     RotateState(Pilot<Motor, Compass, DistanceSensor> &pilot, Compass &compass, int rotationAngle) : pilot(pilot),
                                                                                                      compass(compass),
                                                                                                      rotationAngle(
@@ -24,19 +24,28 @@ public:
     }
 
     bool isDone() override {
+        int currentDirection = compass.direction();
         if (targetDirection < 0) {
-            targetDirection = compass.direction() + rotationAngle;
+            targetDirection = currentDirection + rotationAngle;
+            if (targetDirection < 0) {
+                targetDirection += 360;
+            }
+            pilot.setSpeed(medium);
         }
 
-        if (targetDirection == compass.direction()) {
+        if (targetDirection == currentDirection) {
             pilot.stop();
             targetDirection = -1;
             return true;
         }
 
         pilot.setTargetDirection(targetDirection);
-        pilot.rotateRight();
 
+        if (rotationAngle > 0) {
+            pilot.rotateRight();
+        } else {
+            pilot.rotateLeft();
+        }
         return false;
     }
 

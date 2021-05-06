@@ -4,13 +4,19 @@
 #include <Movement.h>
 #include <DistanceUnits.h>
 
+using Speed = unsigned char;
+
+Speed low = 64;
+Speed medium = 128;
+Speed high = 255;
+
 template<typename Motor, typename Compass, typename DistanceSensor>
 class Pilot {
     Motor &motor;
     Compass &compass;
     DistanceSensor &distanceSensor;
     int targetDirection = 0;
-    char speed = 0;
+    Speed speed = 0;
     bool started = false;
     Inch criticalDistance = 10;
 public:
@@ -25,11 +31,11 @@ public:
         Pilot::targetDirection = direction;
     }
 
-    char getSpeed() const {
+    Speed getSpeed() const {
         return speed;
     }
 
-    void setSpeed(char speed) {
+    void setSpeed(Speed speed) {
         Pilot::speed = speed;
     }
 
