@@ -8,6 +8,8 @@
 class State {
 public:
     virtual bool isDone() = 0;
+
+    virtual ~State() = default;
 };
 
 #endif //MARKIII_STATE_H

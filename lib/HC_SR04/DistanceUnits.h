@@ -5,6 +5,6 @@
 #ifndef MARKIII_DISTANCEUNITS_H
 #define MARKIII_DISTANCEUNITS_H
 
-typedef int Inch;
+typedef unsigned int Inch;
 
 #endif //MARKIII_DISTANCEUNITS_H

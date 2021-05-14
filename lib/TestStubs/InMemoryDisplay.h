@@ -6,18 +6,17 @@
 #define MARKIII_INMEMORYDISPLAY_H
 
 
+#include <SystemState.h>
+
 class InMemoryDisplay {
-  unsigned  int printedDistance = 0;
-    bool printedMotorIsRunningState = false;
+    bool printedState = false;
+    SystemState printedSystemState;
 public:
 
-    unsigned int getPrintedDistance() const;
+    void showState(SystemState &systemState);
 
-    void showDistanceToObstacle(unsigned int distance);
+   const SystemState &getPrintedSystemState() const;
 
-    void showMotorState(bool motorIsMoving);
-
-    bool registeredMotorState() const;
 };
 
 

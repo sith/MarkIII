@@ -5,6 +5,8 @@
 #ifndef MARKIII_SYSTEMMONITOR_H
 #define MARKIII_SYSTEMMONITOR_H
 
+#include <SystemState.h>
+
 template<typename Display, typename Compass, typename Timer, typename Motor, typename DistanceSensor>
 class SystemMonitor {
     Display &display;
@@ -20,8 +22,7 @@ public:
 
     void process() {
         if (timer.isReady()) {
-            display.showDistanceToObstacle(distanceSensor.getDistance());
-            display.showMotorState(motor.isRunning());
+            display.showState({distanceSensor.getDistance(), motor.isRunning(), compass.direction()});
         }
     };
 };

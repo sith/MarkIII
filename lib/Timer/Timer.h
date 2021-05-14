@@ -10,9 +10,9 @@ class Timer {
     unsigned long previousTime = 0;
 
 public:
-    Timer(int delay);
+    explicit Timer(int delay);
 
-    void init();
+    void start();
 
     bool isReady();
 };

@@ -27,9 +27,9 @@ void Compass::process() {
     if (heading > 2 * PI) {
         heading -= 2 * PI;
     }
-    currentDirection = heading * 180 / M_PI; // Convert radians to degrees.
+    currentDirection = heading * 180 / M_PI;
 }
 
-double Compass::direction() {
+int Compass::direction() {
     return currentDirection;
 }

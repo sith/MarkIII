@@ -15,7 +15,7 @@
 #include <FixedTimer.h>
 
 namespace systemMonitor {
-    InMemoryDisplay inMemoryDisplay;
+    InMemoryDisplay inMemoryDisplay{};
     InMemoryCompass inMemoryCompass{0};
     FixedTimer fixedTimer;
     InMemoryMotor inMemoryMotor;
@@ -34,13 +34,13 @@ namespace systemMonitor {
 
         systemMonitor.process();
 
-        TEST_ASSERT_EQUAL(0, inMemoryDisplay.getPrintedDistance());
+        TEST_ASSERT_EQUAL(0, inMemoryDisplay.getPrintedSystemState().distanceToObstacle);
 
         fixedTimer.setReady(true);
 
         systemMonitor.process();
 
-        TEST_ASSERT_EQUAL(newDistance, inMemoryDisplay.getPrintedDistance());
+        TEST_ASSERT_EQUAL(newDistance, inMemoryDisplay.getPrintedSystemState().distanceToObstacle);
     };
 
     void printMotorIsRunning() {
@@ -50,7 +50,7 @@ namespace systemMonitor {
 
         systemMonitor.process();
 
-        TEST_ASSERT(inMemoryDisplay.registeredMotorState());
+        TEST_ASSERT(inMemoryDisplay.getPrintedSystemState().isMotorRunning);
     }
 
     void printMotorIsStopped() {
@@ -60,7 +60,7 @@ namespace systemMonitor {
 
         systemMonitor.process();
 
-        TEST_ASSERT_FALSE(inMemoryDisplay.registeredMotorState());
+        TEST_ASSERT_FALSE(inMemoryDisplay.getPrintedSystemState().isMotorRunning);
     }
 
     void before() {

@@ -22,6 +22,8 @@ void LCDDisplay::clear() {
 
 void LCDDisplay::countDownToStart(int seconds) {
     clearRow(1);
+    lcd.setCursor(0, 0);
+    lcd.print("Mark III is ready!");
     lcd.setCursor(0, 1);
     String message = "Starting in ";
     lcd.write(message.c_str());
@@ -40,33 +42,30 @@ void LCDDisplay::clearRow(int rowIndex) {
     }
 }
 
-void LCDDisplay::showDistanceToObstacle(unsigned int distanceToObstacle) {
-    clearRow(0);
-    lcd.setCursor(0, 0);
-    lcd.write("D:");
-    lcd.print((int) distanceToObstacle);
-    lcd.write("in");
-
-}
-
-void LCDDisplay::showMotorState(bool running) {
-    clearRow(1);
-    lcd.setCursor(0, 1);
-    lcd.write("M:");
-    if (running) {
-        lcd.write("running");
-    } else {
-        lcd.write("stopped");
-    }
-
-}
-
 void LCDDisplay::showErrorAndBlock(char errorCode) {
     clear();
     lcd.setCursor(0, 0);
     lcd.print("Error: ");
     lcd.print((int) errorCode);
     while (1);
+}
+
+void LCDDisplay::showState(const SystemState &systemState) {
+    clear();
+    lcd.setCursor(0, 0);
+    lcd.write("DO:");
+    lcd.print((int) systemState.distanceToObstacle);
+    lcd.write("in");
+
+    lcd.setCursor(0, 1);
+    lcd.write("M:");
+    if (systemState.isMotorRunning) {
+        lcd.write("running ");
+    } else {
+        lcd.write("stopped ");
+    }
+    lcd.write("D:");
+    lcd.print((int) systemState.direction);
 }
 
 

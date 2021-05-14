@@ -8,7 +8,7 @@
 
 void testTimer() {
     Timer timer{250};
-    timer.init();
+    timer.start();
     delay(50);
     TEST_ASSERT_FALSE(timer.isReady());
     delay(250);

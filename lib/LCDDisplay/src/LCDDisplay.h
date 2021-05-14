@@ -7,12 +7,14 @@ const int LCD_ROWS = 2;
 #include <Wire.h>
 #include <hd44780.h>                       // main hd44780 header
 #include <hd44780ioClass/hd44780_I2Cexp.h> // i2c expander i/o class header
+#include <SystemState.h>
 
 
 class LCDDisplay {
     hd44780_I2Cexp lcd;
 
     void clearRow(int rowIndex);
+
 public:
 
     int init();
@@ -23,11 +25,9 @@ public:
 
     void countDownToStart(int seconds);
 
-    void showDistanceToObstacle(unsigned int distanceToObstacle);
-
-    void showMotorState(bool running);
-
     void showErrorAndBlock(char errorCode);
+
+    void showState(const SystemState &systemState);
 };
 
 

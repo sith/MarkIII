@@ -18,6 +18,6 @@ bool Timer::isReady() {
 
 Timer::Timer(int delay) : delay(delay) {}
 
-void Timer::init() {
+void Timer::start() {
     previousTime = millis();
 }

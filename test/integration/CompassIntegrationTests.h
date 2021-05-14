@@ -8,15 +8,18 @@
 #include <unity.h>
 #include <Compass.h>
 
-void noErrorsWhenInitializingCompass(){
+void noErrorsWhenInitializingCompass() {
     Compass compass;
-    TEST_ASSERT(compass.init());
+
+    bool initStatus = compass.init();
+    TEST_ASSERT(initStatus);
+
     int initial_direction = compass.direction();
-    TEST_ASSERT_NOT_EQUAL(initial_direction,-1);
+    TEST_ASSERT_NOT_EQUAL(initial_direction, -1);
 };
 
 
-void compassIntegrationTests(){
+void compassIntegrationTests() {
     RUN_TEST(noErrorsWhenInitializingCompass);
 }
 
