@@ -21,15 +21,17 @@ void Compass::process() {
 
     heading += declinationAngle;
 
-    if (heading < 0) {
-        heading += 2 * PI;
-    }
-    if (heading > 2 * PI) {
-        heading -= 2 * PI;
-    }
+
     currentDirection = smooth(heading);
 }
 
 int Compass::direction() {
-    return currentDirection * 180 / M_PI;
+
+    if (currentDirection < 0) {
+        currentDirection += 2 * PI;
+    }
+    if (currentDirection > 2 * PI) {
+        currentDirection -= 2 * PI;
+    }
+    return 360 - (currentDirection * 180 / PI);
 }
