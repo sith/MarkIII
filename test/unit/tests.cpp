@@ -7,6 +7,7 @@
 #include "SystemMonitorTests.h"
 #include "StateMachineTests.h"
 #include "RotateStateTests.h"
+#include "SmoothingFunctionTest.h"
 
 void setup() {}
 
@@ -17,5 +18,6 @@ void loop() {
     systemMonitor::tests();
     stateMachineTests();
     rotateStateTests();
+    smoothingFunction::tests();
     UNITY_END();
 }

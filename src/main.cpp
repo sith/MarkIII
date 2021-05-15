@@ -46,6 +46,5 @@ void loop() {
     distanceSensor.process();
     compass.process();
     systemMonitor.process();
-    pilot.setSpeed(medium);
-    pilot.forward();
+
 }

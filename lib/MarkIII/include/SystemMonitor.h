@@ -22,7 +22,8 @@ public:
 
     void process() {
         if (timer.isReady()) {
-            display.showState({distanceSensor.getDistance(), motor.isRunning(), compass.direction()});
+            SystemState systemState{distanceSensor.getDistance(), motor.isRunning(), compass.direction()};
+            display.showState(systemState);
         }
     };
 };

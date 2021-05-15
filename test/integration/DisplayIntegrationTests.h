@@ -4,16 +4,17 @@
 
 #ifndef MARKIII_DISPLAYINTEGRATIONTESTS_H
 #define MARKIII_DISPLAYINTEGRATIONTESTS_H
+
 #include <unity.h>
 #include <LCDDisplay.h>
 
-void noErrorsWhenInitializingDisplay(){
+void noErrorsWhenInitializingDisplay() {
     LCDDisplay display;
-    TEST_ASSERT_EQUAL(display.init(),0);
+    TEST_ASSERT_EQUAL(0, display.init());
 };
 
 
-void displayIntegrationTests(){
+void displayIntegrationTests() {
     RUN_TEST(noErrorsWhenInitializingDisplay);
 }
 

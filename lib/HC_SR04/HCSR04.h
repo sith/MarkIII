@@ -7,11 +7,14 @@
 
 #include <Arduino.h>
 #include <DistanceUnits.h>
+#include <SmoothingFunction.h>
 
 class HCSR04 {
     const int trigPin;
     const int echoPin;
     unsigned int distance = 0;
+
+    SmoothingFunction<20> smooth;
 
     void readSensor();
 

@@ -29,5 +29,6 @@ void HCSR04::readSensor() {
     digitalWrite(trigPin, LOW);
 
     unsigned long duration = pulseIn(echoPin, HIGH);
-    distance = duration / (74 * 2);
+    auto reading = (double) duration / (74 * 2);
+    distance = smooth(reading);
 }

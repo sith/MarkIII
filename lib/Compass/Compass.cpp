@@ -27,9 +27,9 @@ void Compass::process() {
     if (heading > 2 * PI) {
         heading -= 2 * PI;
     }
-    currentDirection = heading * 180 / M_PI;
+    currentDirection = smooth(heading);
 }
 
 int Compass::direction() {
-    return currentDirection;
+    return currentDirection * 180 / M_PI;
 }
