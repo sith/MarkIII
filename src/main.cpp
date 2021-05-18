@@ -7,6 +7,7 @@
 #include <RotateState.h>
 #include <SystemMonitor.h>
 #include <Timer.h>
+#include <FollowTheTargetStateMachine.h>
 #include "ErrorCodes.h"
 
 Timer systemMonitorTimer{250};
@@ -15,13 +16,14 @@ Compass compass;
 HCSR04 distanceSensor{2, 6};
 L293DDualMotorDriver l293DDualMotorDriver;
 
-SystemMonitor<LCDDisplay, Compass, Timer, L293DDualMotorDriver, HCSR04> systemMonitor{lcdDisplay, compass,
-                                                                                      systemMonitorTimer,
-                                                                                      l293DDualMotorDriver,
-                                                                                      distanceSensor};;
+SystemMonitor<LCDDisplay, Compass, Timer, HCSR04> systemMonitor{lcdDisplay,
+                                                                compass,
+                                                                systemMonitorTimer,
+                                                                distanceSensor};
 Pilot<L293DDualMotorDriver, Compass, HCSR04> pilot{l293DDualMotorDriver, compass, distanceSensor};
 
-RotateState<L293DDualMotorDriver, Compass, HCSR04> rotateState{pilot, compass, 90};
+FollowTheTargetStateMachine<L293DDualMotorDriver, Compass, HCSR04> followTheTargetStateMachine{5, pilot,
+                                                                                               distanceSensor};
 
 void setup() {
     Serial.begin(9600);
@@ -47,4 +49,6 @@ void loop() {
     compass.process();
     systemMonitor.process();
 
+
+    followTheTargetStateMachine.process();
 }

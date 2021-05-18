@@ -9,9 +9,9 @@
 class InMemoryDistanceSensor {
     int distance = 0;
 public:
-    int getDistance();
+    Inch getDistance();
 
-    void setDistance(int distance);
+    void setDistance(Inch distance);
 };
 
 

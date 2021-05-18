@@ -7,7 +7,6 @@
 
 struct SystemState {
     unsigned int distanceToObstacle;
-    bool isMotorRunning;
     int direction;
 };
 

@@ -23,6 +23,8 @@ public:
 
     bool goesForward() const;
 
+    bool goesBackward() const;
+
     void leftWheel(Movement movement, unsigned char speed);
 
     void rightWheel(Movement movement, unsigned char speed);

@@ -21,6 +21,11 @@ bool InMemoryMotor::goesForward() const {
            rightWheelSpeed > 0 and leftWheelSpeed == rightWheelSpeed;
 }
 
+bool InMemoryMotor::goesBackward() const {
+    return leftWheelMovement == BACKWARD && rightWheelMovement == BACKWARD && leftWheelSpeed > 0 &&
+           rightWheelSpeed > 0 and leftWheelSpeed == rightWheelSpeed;;
+}
+
 void InMemoryMotor::leftWheel(Movement movement, unsigned char speed) {
     leftWheelMovement = movement;
     InMemoryMotor::leftWheelSpeed = speed;

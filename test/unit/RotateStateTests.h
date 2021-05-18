@@ -9,6 +9,8 @@
 #include "unity.h"
 
 namespace rotateState {
+    InMemoryDisplay display;
+
     void rotatesRight() {
         InMemoryMotor inMemoryMotor;
         InMemoryCompass inMemoryCompass{0};
@@ -16,7 +18,9 @@ namespace rotateState {
         Pilot<InMemoryMotor, InMemoryCompass, InMemoryDistanceSensor> pilot{inMemoryMotor,
                                                                             inMemoryCompass,
                                                                             inMemoryDistanceSensor};
-        RotateState<InMemoryMotor, InMemoryCompass, InMemoryDistanceSensor> rotateState{pilot, inMemoryCompass, 90};
+        RotateState<InMemoryMotor, InMemoryCompass, InMemoryDistanceSensor, InMemoryDisplay> rotateState{pilot,
+                                                                                                         inMemoryCompass,
+                                                                                                         90, display};
         TEST_ASSERT(!rotateState.isDone());
         TEST_ASSERT(inMemoryMotor.doesRotateRight());
 
@@ -36,7 +40,9 @@ namespace rotateState {
         Pilot<InMemoryMotor, InMemoryCompass, InMemoryDistanceSensor> pilot{inMemoryMotor,
                                                                             inMemoryCompass,
                                                                             inMemoryDistanceSensor};
-        RotateState<InMemoryMotor, InMemoryCompass, InMemoryDistanceSensor> rotateState{pilot, inMemoryCompass, -90};
+        RotateState<InMemoryMotor, InMemoryCompass, InMemoryDistanceSensor, InMemoryDisplay> rotateState{pilot,
+                                                                                                         inMemoryCompass,
+                                                                                                         -90, display};
         TEST_ASSERT(!rotateState.isDone());
         TEST_ASSERT(inMemoryMotor.doesRotateLeft());
 

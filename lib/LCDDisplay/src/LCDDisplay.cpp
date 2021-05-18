@@ -51,21 +51,55 @@ void LCDDisplay::showErrorAndBlock(char errorCode) {
 }
 
 void LCDDisplay::showState(const SystemState &systemState) {
-    clear();
+    clearRow(0);
     lcd.setCursor(0, 0);
     lcd.write("DO:");
     lcd.print((int) systemState.distanceToObstacle);
     lcd.write("in");
 
-    lcd.setCursor(0, 1);
-    lcd.write("M:");
-    if (systemState.isMotorRunning) {
-        lcd.write("running ");
-    } else {
-        lcd.write("stopped ");
-    }
+    lcd.setCursor(8, 0);
     lcd.write("D:");
     lcd.print((int) systemState.direction);
+}
+
+void LCDDisplay::log(const char *key, char value) {
+    clearRow(1);
+    lcd.setCursor(0, 1);
+    lcd.write(key);
+    lcd.write(DELIMITER);
+    lcd.print(value);
+}
+
+void LCDDisplay::log(const char *key, int value) {
+    clearRow(1);
+    lcd.setCursor(0, 1);
+    lcd.write(key);
+    lcd.write(DELIMITER);
+    lcd.print(value);
+}
+
+void LCDDisplay::log(const char *key, long value) {
+    clearRow(1);
+    lcd.setCursor(0, 1);
+    lcd.write(key);
+    lcd.write(DELIMITER);
+    lcd.print(value);
+}
+
+void LCDDisplay::log(const char *key, float value) {
+    clearRow(1);
+    lcd.setCursor(0, 1);
+    lcd.write(key);
+    lcd.write(DELIMITER);
+    lcd.print(value, 2);
+}
+
+void LCDDisplay::log(const char *key, double value) {
+    clearRow(1);
+    lcd.setCursor(0, 1);
+    lcd.write(key);
+    lcd.write(DELIMITER);
+    lcd.print(value, 2);
 }
 
 

@@ -21,7 +21,6 @@ void Compass::process() {
 
     heading += declinationAngle;
 
-
     currentDirection = smooth(heading);
 }
 

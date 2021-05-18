@@ -17,6 +17,16 @@ public:
 
    const SystemState &getPrintedSystemState() const;
 
+    void log(const char *key, char value);
+
+    void log(const char *key, int value);
+
+    void log(const char *key, long value);
+
+    void log(const char *key, float value);
+
+    void log(const char *key, double value);
+
 };
 
 

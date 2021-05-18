@@ -14,7 +14,7 @@ class Compass {
     const float yMax = 7.20;
     const float declinationAngle = -0.2714;
 
-    SmoothingFunction<40> smooth;
+    SmoothingFunction<20> smooth;
 
 public:
 

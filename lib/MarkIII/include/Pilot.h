@@ -18,7 +18,7 @@ class Pilot {
     int targetDirection = 0;
     Speed speed = 0;
     bool started = false;
-    Inch criticalDistance = 10;
+    Inch criticalDistance = 1;
 public:
     Pilot(Motor &motor, Compass &compass, DistanceSensor &distanceSensor)
             : motor(motor), compass(compass), distanceSensor(distanceSensor) {}
@@ -73,6 +73,11 @@ public:
     void forward() const {
         motor.leftWheel(FORWARD, speed);
         motor.rightWheel(FORWARD, speed);
+    }
+
+    void backwards() const {
+        motor.leftWheel(BACKWARD, speed);
+        motor.rightWheel(BACKWARD, speed);
     }
 
     void rotateLeft() const {

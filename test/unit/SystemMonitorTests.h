@@ -18,14 +18,13 @@ namespace systemMonitor {
     InMemoryDisplay inMemoryDisplay{};
     InMemoryCompass inMemoryCompass{0};
     FixedTimer fixedTimer;
-    InMemoryMotor inMemoryMotor;
     InMemoryDistanceSensor distanceSensor;
-    SystemMonitor<InMemoryDisplay, InMemoryCompass, FixedTimer, InMemoryMotor, InMemoryDistanceSensor> systemMonitor{
+    SystemMonitor<InMemoryDisplay, InMemoryCompass, FixedTimer, InMemoryDistanceSensor> systemMonitor{
             inMemoryDisplay,
             inMemoryCompass,
             fixedTimer,
-            inMemoryMotor,
-            distanceSensor};
+            distanceSensor}
+;
 
     void printsDistanceAfterTimerIsTriggered() {
         int newDistance = 10;
@@ -43,25 +42,6 @@ namespace systemMonitor {
         TEST_ASSERT_EQUAL(newDistance, inMemoryDisplay.getPrintedSystemState().distanceToObstacle);
     };
 
-    void printMotorIsRunning() {
-        fixedTimer.setReady(true);
-        inMemoryMotor.leftWheel(BACKWARD, 128);
-        inMemoryMotor.rightWheel(FORWARD, 0);
-
-        systemMonitor.process();
-
-        TEST_ASSERT(inMemoryDisplay.getPrintedSystemState().isMotorRunning);
-    }
-
-    void printMotorIsStopped() {
-        fixedTimer.setReady(true);
-        inMemoryMotor.leftWheel(FORWARD, 0);
-        inMemoryMotor.rightWheel(FORWARD, 0);
-
-        systemMonitor.process();
-
-        TEST_ASSERT_FALSE(inMemoryDisplay.getPrintedSystemState().isMotorRunning);
-    }
 
     void before() {
         inMemoryCompass.setDirection(0);
@@ -72,10 +52,6 @@ namespace systemMonitor {
     void tests() {
         before();
         RUN_TEST(printsDistanceAfterTimerIsTriggered);
-        before();
-        RUN_TEST(printMotorIsRunning);
-        before();
-        RUN_TEST(printMotorIsStopped);
     }
 }
 #endif //MARKIII_SYSTEMMONITORTESTS_H

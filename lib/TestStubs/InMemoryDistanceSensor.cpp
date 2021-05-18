@@ -1,9 +1,10 @@
+#include <DistanceUnits.h>
 #include "InMemoryDistanceSensor.h"
 
-int InMemoryDistanceSensor::getDistance() {
+Inch InMemoryDistanceSensor::getDistance() {
     return distance;
 }
 
-void InMemoryDistanceSensor::setDistance(int distance) {
+void InMemoryDistanceSensor::setDistance(Inch distance) {
     InMemoryDistanceSensor::distance = distance;
 }
