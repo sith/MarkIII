@@ -8,12 +8,12 @@
 template<unsigned char READINGS_SIZE>
 class SmoothingFunction {
     static const unsigned char size = READINGS_SIZE;
-    double readings[size];
+    double readings[size]{0.0};
     unsigned char currentIndex = 0;
     unsigned char length = 0;
 
     double avg() {
-        double sum = 0;
+        double sum = 0.0;
         for (int i = 0; i < length; i++) {
             sum += readings[i];
         }
@@ -21,9 +21,11 @@ class SmoothingFunction {
     }
 
     double stdDev(double &mean) {
-        double total;
+        double total = 0.0;
         for (int i = 0; i < length; i++) {
-            total = total + (readings[i] - mean) * (readings[i] - mean);
+            double diff = readings[i] - mean;
+            double squareDiff = diff * diff;
+            total = total + squareDiff;
         }
 
         double variance = total / length;
@@ -45,13 +47,13 @@ public:
 
         double sum = 0;
         unsigned char newLength = 0;
+
         for (int i = 0; i < length; i++) {
             if (readings[i] >= mean - 2 * std && readings[i] <= mean + 2 * std) {
                 sum += readings[i];
                 ++newLength;
             }
         }
-
         return sum / newLength;
     }
 };

@@ -6,11 +6,11 @@
 #define MARKIII_TIMER_H
 
 class Timer {
-    int delay;
+    int duration;
     unsigned long previousTime = 0;
 
 public:
-    explicit Timer(int delay);
+    explicit Timer(int duration);
 
     void start();
 

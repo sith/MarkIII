@@ -8,7 +8,7 @@
 bool Timer::isReady() {
     unsigned long currentTime = millis();
 
-    if (previousTime + delay > currentTime) {
+    if (previousTime + duration > currentTime) {
         return false;
     }
 
@@ -16,7 +16,7 @@ bool Timer::isReady() {
     return true;
 }
 
-Timer::Timer(int delay) : delay(delay) {}
+Timer::Timer(int duration) : duration(duration) {}
 
 void Timer::start() {
     previousTime = millis();

@@ -22,7 +22,7 @@ SystemMonitor<LCDDisplay, Compass, Timer, HCSR04> systemMonitor{lcdDisplay,
                                                                 distanceSensor};
 Pilot<L293DDualMotorDriver, Compass, HCSR04> pilot{l293DDualMotorDriver, compass, distanceSensor};
 
-FollowTheTargetStateMachine<L293DDualMotorDriver, Compass, HCSR04> followTheTargetStateMachine{5, pilot,
+FollowTheTargetStateMachine<L293DDualMotorDriver, Compass, HCSR04> followTheTargetStateMachine{15, pilot,
                                                                                                distanceSensor};
 
 void setup() {
@@ -36,11 +36,9 @@ void setup() {
     systemMonitorTimer.start();
     distanceSensor.init();
     systemMonitor.init();
-
     l293DDualMotorDriver.init();
-    lcdDisplay.countDownToStart(5);
 
-    lcdDisplay.showWelcomeMessage();
+//    lcdDisplay.countDownToStart(5);
     lcdDisplay.clear();
 }
 
@@ -48,7 +46,6 @@ void loop() {
     distanceSensor.process();
     compass.process();
     systemMonitor.process();
-
 
     followTheTargetStateMachine.process();
 }

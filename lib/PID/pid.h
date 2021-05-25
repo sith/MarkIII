@@ -32,7 +32,7 @@ public:
     // Kp -  proportional gain
     // Ki -  Integral gain
     // Kd -  derivative gain
-    // dt -  loop interval time
+    // dt -  loop interval time in msec
     // max - maximum value of manipulated variable
     // min - minimum value of manipulated variable
     PID(double dt, double max, double min, double Kp, double Kd, double Ki);
